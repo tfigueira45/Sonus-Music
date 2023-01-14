@@ -1,0 +1,230 @@
+body{
+    background:  rgba(18, 18, 22, 1) no-repeat top center fixed;
+}
+
+@media only screen and (max-device-width: 360px) {
+    #musics{
+        width: 98vw;
+        height: 106vh;
+        position: fixed;
+        left: 5px;
+        color: darkcyan;
+        font-size: 14pt;
+        overflow-y: scroll;
+        font-family: 'Caveat', cursive;
+    }
+    #tak{
+        height: 60px;
+        position: fixed;
+        bottom: 0px;
+    }
+    #c{
+        position: relative;
+        top: 75px;
+    }
+    .controls-box{
+        display: inline-flex;
+        position: fixed;
+        left: 100px;
+        bottom: 2px;
+    }
+    #lyricButtom{
+        position: fixed;
+        bottom: 18px;
+        right: 54px;
+    }
+
+}
+
+@media only screen and (min-device-width: 1100px) {
+    #musics{
+        width: 90.9vw;
+        height: 92vh;
+        position: fixed;
+        left: 220px;
+        color: darkcyan;
+        font-size: 16pt;
+        overflow-y: scroll;
+        font-family: 'Caveat', cursive;
+        bottom: 50px;
+        background-color: rgba(18, 18, 22, 1) no-repeat top center fixed;
+    }
+    #tak{
+        height: 70px;
+        
+    }
+    #lista{
+        height: 100vh;
+    }
+    .controls-box{
+        position: fixed;
+        bottom: 5px;
+        left: 5px;
+    }
+    #lyricButtom{
+        position: fixed;
+        bottom: 18px;
+        right: 150px;
+    }
+}
+
+#tak{
+    display: inline-block;
+    background-color: rgba(35, 35, 45);
+    width: 100vw;
+    position: fixed;
+    bottom: -2px;
+    left: -1px;
+    
+    
+}
+
+#time{
+    position: fixed;
+    bottom: -12px;
+    left: -2px;
+    width: 100vw;
+    cursor: pointer;
+    background-color: #18A5E7;
+}
+
+#playButtom{
+    border-radius: 50%;
+    background-color: rgba(255, 239, 239, 0);
+    border-radius: 5px;
+    border-color: rgba(230, 230, 230, 0);
+    height: 40px;
+    cursor: pointer;
+    
+}
+
+#nextButtom{
+    
+    background-color: rgba(255, 239, 239, 0);
+    border-radius: 5px;
+    border-color: rgba(230, 230, 230, 0);
+    height: 50px;
+    cursor: pointer;
+    
+}
+#backButtom{
+    
+    background-color: rgba(255, 239, 239, 0);
+    border-radius: 5px;
+    border-color: rgba(230, 230, 230, 0);
+    height: 50px;
+    cursor: pointer;
+   
+    
+}
+#m{
+    font-family: 'Caveat', cursive;
+    font-size: 26pt;
+    position: fixed;
+    left: 533px;
+    bottom: -55px;
+    
+    
+    
+}
+
+#lista{
+    background-color: rgb(25, 25, 34);
+    
+    width: 220px;
+    position: fixed;
+    left: -2px;
+    top: -2px;
+    
+    
+    
+    
+    
+}
+#lyricButtom{
+    background-color: rgba(230, 230, 230, 0);
+    border-color: rgba(230, 230, 230, 0);
+    cursor: pointer;
+}
+#alButtom{
+    position: fixed;
+    bottom: 18px;
+    right: 28px;
+    background-color: rgba(230, 230, 230, 0);
+    border-color: rgba(230, 230, 230, 0);
+    cursor: pointer;
+}
+#loopButtom{
+    position: fixed;
+    bottom: 18px;
+    right: 68px;
+    background-color: rgba(230, 230, 230, 0);
+    border-color: rgba(230, 230, 230, 0);
+    cursor: pointer;
+}
+#soundButtom{
+    background-color: rgba(255, 239, 239, 0);
+    border-radius: 5px;
+    border-color: rgba(230, 230, 230, 0);
+    height: 40px;
+    position: fixed;
+    right:  108px;
+    bottom: 16px;
+    cursor: pointer;
+    
+}
+
+#logoImg{
+    position: relative;
+    left: 5px;
+}
+
+#musics{
+    font-family: 'Caveat', cursive;
+    color: darkcyan;
+}
+li{
+    position: relative;
+    left: 100px;
+}
+#musics::-webkit-scrollbar,#lyricDiv::-webkit-scrollbar{
+    width: 5px; 
+     
+    position: relative;
+    right: 0px;
+    
+}
+#musics::-webkit-scrollbar-track,#lyricDiv::-webkit-scrollbar-track {
+    background: rgb(56, 54, 51);
+    border-radius: 30px;
+
+          
+  }
+  #musics::-webkit-scrollbar-thumb,#lyricDiv::-webkit-scrollbar-thumb {
+    background-color: rgb(123, 123, 131);    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    
+   
+  }
+
+  #h1{
+    position: relative;
+    top: -1630px;
+    left: 30px;
+  }
+
+.loopSVG,.alSVG{
+    fill: #D9D9D9;
+}
+#lyricDiv{
+    width: 100vw;
+    background-color: rgb(30, 116, 125);
+    position: fixed;
+    left: -1px;
+    top: 0px;
+    overflow-y: scroll;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    font-size: 22pt;
+    color: white;
+}

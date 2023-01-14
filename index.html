@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ouça Músicas Gratuitamente.">
+    <link rel="canonical" href="https://sonusmusic.netlify.app/">
+    <meta name="google-site-verification" content="2EOeLon9fo6aG5eFy7xiChJnnenAprNo1BG3My8Ehzg" />
+    <title id="titulo">Playlist</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="imagem/png" href="imagens/icon.png"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    
+</head>
+
+<body id="body">
+    <div id="lista">
+        <img id="logoImg" src="imagens/logogif.gif" alt="">
+    </div>
+    <audio src="" id="audio" onplaying="valor()" onplay="save()" onended="next()"></audio>
+    <div id="musics">
+        <div id='int'>
+            <a onclick='select()' id='l1'>Internacionais</a><br><br>
+            <a onclick='select2()' id='l2'>CCAA</a>
+        </div>
+        <h1 id='h1'></h1>
+        <input type='checkbox'  id='c' hidden style='height: 20px;width: 20px;position : relative; left: 16px;top: 95px' oninput='selectAll()' >
+        
+        <p id='p1'></p>
+        <br>
+        <div id='info'>
+        </div>
+    </div>
+    
+    
+<div id="tak" >
+        <div id="som">
+           <button id="soundButtom" onclick="criar()" aria-label="Volume">
+            <svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25px" height="25px" viewBox="0 0 32 32" xml:space="preserve" fill="#D9D9D8">
+                <path class="puchipuchi_een" d="M16,6v20c0,1.1-0.772,1.537-1.715,0.971l-6.57-3.942C6.772,22.463,5.1,22,4,22H3c-1.1,0-2-0.9-2-2
+	                v-8c0-1.1,0.9-2,2-2h1c1.1,0,2.772-0.463,3.715-1.029l6.57-3.942C15.228,4.463,16,4.9,16,6z M26.606,5.394
+	                c-0.781-0.781-2.047-0.781-2.828,0s-0.781,2.047,0,2.828C25.855,10.3,27,13.062,27,16s-1.145,5.7-3.222,7.778
+	                c-0.781,0.781-0.781,2.047,0,2.828c0.391,0.391,0.902,0.586,1.414,0.586s1.023-0.195,1.414-0.586C29.439,23.773,31,20.007,31,16
+	                S29.439,8.227,26.606,5.394z M22.363,9.636c-0.781-0.781-2.047-0.781-2.828,0s-0.781,2.047,0,2.828C20.479,13.409,21,14.664,21,16
+	                s-0.52,2.591-1.464,3.535c-0.781,0.781-0.781,2.047,0,2.828c0.391,0.391,0.902,0.586,1.414,0.586s1.023-0.195,1.414-0.586
+	                C24.064,20.664,25,18.404,25,16S24.063,11.336,22.363,9.636z"/>
+            </svg>
+                
+            </button>
+       </div>
+            <marquee id="m" behavior="scroll" direction="left" width="300px" height="110px" ></marquee>
+            <div class="controls-box" >
+            <button id="backButtom" onclick="back()" aria-label="Anterior">
+                <svg width="23" height="20" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.5 14.3301C4.16666 12.4056 4.16667 7.59437 7.5 5.66987L15 1.33974C18.3333 -0.584758 22.5 1.82087 22.5 5.66987L22.5 14.3301C22.5 18.1791 18.3333 20.5848 15 18.6603L7.5 14.3301Z" fill="#D9D9D9"/>
+                    <rect x="5" y="20" width="5" height="20" rx="2.5" transform="rotate(180 5 20)" fill="#D9D9D9"/>
+                </svg>
+            </button>
+            <button id="playButtom" onclick="start_track()" aria-label="Play/Pause">
+                <svg width="25" height="28" viewBox="0 0 25 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22.5 9.66987C25.8333 11.5944 25.8333 16.4056 22.5 18.3301L7.50001 26.9904C4.16667 28.9149 0 26.5093 0 22.6603V5.33975C0 1.49075 4.16667 -0.914883 7.5 1.00962L22.5 9.66987Z" fill="#D9D9D9"/>
+                </svg>
+            </button>
+            <button id="nextButtom" onclick="next()" aria-label="Próximo">
+                <svg width="23" height="20" viewBox="0 0 23 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15.5 5.66988C18.8333 7.59438 18.8333 12.4056 15.5 14.3301L8 18.6603C4.66666 20.5848 0.5 18.1791 0.5 14.3301V5.66987C0.5 1.82087 4.66667 -0.584755 8 1.33975L15.5 5.66988Z" fill="#D9D9D9"/>
+                    <rect x="23" y="20" width="5" height="20" rx="2.5" transform="rotate(-180 23 20)" fill="#D9D9D9"/>
+                    </svg>
+                    
+            </button>
+            </div>
+
+            <button id="lyricButtom" onclick="display_lyric()" aria-label="Letras" style="background-color: transparent;">
+                <svg class="lyricSVG" width="26" height="30" viewBox="0 0 26 30" fill="#D9D9D9" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.2114 24.459C10.3326 24.458 9.44775 24.7969 8.77761 25.4659L6.65154 27.5936C6.12232 28.1217 5.43607 28.3823 4.7425 28.3834C4.04886 28.3822 3.36308 28.1217 2.8334 27.5936C2.30488 27.0639 2.04361 26.3776 2.04308 25.6834C2.04361 24.9904 2.30488 24.3041 2.8334 23.7744L1.69123 22.6322C0.849998 23.4729 0.426541 24.5821 0.427126 25.6834C0.425955 26.7853 0.849998 27.8946 1.69123 28.7358C2.53193 29.576 3.64052 30 4.7425 30C5.84441 30 6.95359 29.576 7.79429 28.7359L9.92037 26.6087C10.279 26.2512 10.7415 26.0756 11.2114 26.0739C11.6812 26.0756 12.1438 26.2512 12.5018 26.6092C12.8805 26.9879 13.0555 27.4835 13.0354 27.9796L14.6497 28.0495C14.6911 27.1221 14.3532 26.1745 13.6451 25.467C12.975 24.7969 12.0889 24.458 11.2114 24.459Z" />
+                    <path d="M23.7547 1.81772C21.4626 -0.474465 17.8239 -0.598097 15.3841 1.44296L24.1295 10.189C26.1711 7.74911 26.0475 4.10997 23.7547 1.81772Z" />
+                    <path d="M13.0281 5.91444L19.6592 12.545C20.9893 12.4522 22.2949 11.932 23.3543 10.9855L14.5881 2.21881C13.6412 3.27772 13.1216 4.58324 13.0281 5.91444Z" />
+                    <path d="M1.02557 20.3596L5.21339 24.5474L18.2501 12.7362L12.8373 7.32281L1.02557 20.3596ZM14.097 12.3329L12.3832 14.0474L11.5262 13.1893L13.2401 11.4766L14.097 12.3329Z" />
+                    </svg>
+                    
+            </button>
+            <button id="alButtom" onclick="randomTrack()" aria-label="Aleatório">
+                <svg class="alSVG" width="30px" height="30px" viewBox="0 0 24 24" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <style type="text/css">
+                        .st0{opacity:0.2;fill:none;stroke:#000000;stroke-width:5.000000e-02;stroke-miterlimit:10;}
+                    </style>
+                    <g id="Layer_1"/>
+                    <g id="Layer_2">
+                    <g>
+                        <path d="M8.7,14.2C8,14.7,7.1,15,6.2,15H4c-0.6,0-1,0.4-1,1s0.4,1,1,1h2.2c1.3,0,2.6-0.4,3.7-1.2c0.4-0.3,0.5-1,0.2-1.4    C9.7,13.9,9.1,13.8,8.7,14.2z"/>
+                        <path d="M13,10.7c0.3,0,0.6-0.1,0.8-0.3C14.5,9.5,15.6,9,16.8,9h0.8l-0.3,0.3c-0.4,0.4-0.4,1,0,1.4c0.2,0.2,0.5,0.3,0.7,0.3    s0.5-0.1,0.7-0.3l2-2c0.1-0.1,0.2-0.2,0.2-0.3c0.1-0.2,0.1-0.5,0-0.8c-0.1-0.1-0.1-0.2-0.2-0.3l-2-2c-0.4-0.4-1-0.4-1.4,0    s-0.4,1,0,1.4L17.6,7h-0.8c-1.8,0-3.4,0.8-4.6,2.1c-0.4,0.4-0.3,1,0.1,1.4C12.5,10.7,12.8,10.7,13,10.7z"/>
+                        <path d="M20.7,15.3l-2-2c-0.4-0.4-1-0.4-1.4,0s-0.4,1,0,1.4l0.3,0.3h-1.5c-1.6,0-2.9-0.9-3.6-2.3l-1.2-2.4C10.3,8.3,8.2,7,5.9,7H4    C3.4,7,3,7.4,3,8s0.4,1,1,1h1.9c1.6,0,2.9,0.9,3.6,2.3l1.2,2.4c1,2.1,3.1,3.4,5.4,3.4h1.5l-0.3,0.3c-0.4,0.4-0.4,1,0,1.4    c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l2-2C21.1,16.3,21.1,15.7,20.7,15.3z"/>
+                    </g>
+                    </g>
+                </svg>
+                    
+                    
+            </button>
+            <button id="loopButtom" onclick="loop()" aria-label="Loop">
+                <svg class="loopSVG" fill="#D9D9D9" xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 100 100"  enable-background="new 0 0 100 100" xml:space="preserve">
+                    <path d="M76.5,58.3c0,0.1,0,0.2-0.1,0.2c-0.3,1.1-0.7,2.2-1.1,3.3c-0.5,1.2-1,2.3-1.6,3.4c-1.2,2.2-2.7,4.2-4.5,6
+	                    c-1.7,1.8-3.7,3.4-5.9,4.7c-2.2,1.3-4.5,2.3-7,3c-2.5,0.7-5.1,1.1-7.7,1.1C32.8,80,20,67.2,20,51.3s12.8-28.6,28.6-28.6
+	                    c5.3,0,10.3,1.5,14.6,4c0,0,0,0,0.1,0c2.1,1.2,4,2.7,5.6,4.4c0.5,0.4,0.8,0.7,1.2,1.2c0.9,0.8,1.6,0.3,1.6-0.9V22c0-1.1,0.9-2,2-2h4
+	                    c1.1,0,2,0.9,2.2,2v24.5c0,0.9-0.8,1.8-1.8,1.8H53.6c-1.1,0-1.9-0.8-1.9-1.9v-4.2c0-1.1,0.9-2,2-2h9.4c0.8,0,1.4-0.2,1.7-0.7
+	                    c-3.6-5-9.6-8.3-16.2-8.3c-11.1,0-20.1,9-20.1,20.1s9,20.1,20.1,20.1c8.7,0,16.1-5.5,18.9-13.3c0,0,0.3-1.8,1.7-1.8
+	                    c1.4,0,4.8,0,5.7,0c0.8,0,1.6,0.6,1.6,1.5C76.5,58,76.5,58.1,76.5,58.3z"/>
+                </svg>
+                    
+                    
+            </button>
+      
+            <input type="range" id="time" value="0" onchange="du()"> 
+</div>
+        
+        
+        <script src="script.js"></script>
+        <script src="musics.js"></script>
+</body>
+</html>
