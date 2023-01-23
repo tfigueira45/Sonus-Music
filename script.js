@@ -1,5 +1,6 @@
 
 var playButtom = document.getElementById('playButtom')
+var playButtom = document.getElementById('playButtom')
 var cron
 var time = document.getElementById('time')
 var img = document.getElementById('img')
@@ -12,6 +13,10 @@ var m = document.getElementById('m')
 var audio = document.getElementById('audio')
 var nextButtom = document.getElementById('nextButtom')
 var titulo = document.getElementById('titulo')
+var musicImg = document.getElementById("musicImg")
+var titleP = document.getElementById('titleP')
+var artistP = document.getElementById('artistP')
+var setFile = document.getElementById('setFile')
 var isRandom = false
 var isPlaying = false
 var alreadyPlayed = []
@@ -51,7 +56,9 @@ function load_Track(index){
     localStorage.setItem('inf',inf[0].array)
     audio.src = 'musics/' + inf[index].path
     audio.play()
-    m.innerText = inf[count].title +' • ' + inf[count].artist
+    musicImg.src = inf[count].img
+    artistP.innerText = inf[count].artist
+    titleP.innerText = inf[count].title
     titulo.innerText = inf[count].title +' • ' + inf[count].artist
     console.log(index)
     alreadyPlayed.push(Object({playlist:inf[0].array,número:count}))
@@ -167,13 +174,14 @@ function next(){
 }
 
 function back(){
-    count--
-    console.log(count)
-    audio.src = 'musics/' + inf[count].path
-    audio.play()
-    reset()
-    valor()
-    m.innerText =inf[count].title +' • ' + inf[count].artist
+    if(count > 0){
+        count--;
+    }else{
+        count = inf.length -1;
+    }
+    load_Track(count);
+    artistP.innerText = inf[count].artist
+    titleP.innerText = inf[count].title
     titulo.innerText = inf[count].title +' • ' + inf[count].artist
     document.getElementById('ul'+(count+1)).style.color = 'darkcyan'
     document.getElementById('ul'+count).style.color = 'blue'
@@ -216,13 +224,52 @@ function dloop(){
     loopSVG.style.fill = "#D9D9D9"
     loopButtom.onclick = loop
 }
+function random_bg_color(){
+    let hex = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e'];
+    let a;
+
+    function populate(a){
+        for(let i=0; i<6; i++){
+            let x = Math.round(Math.random() * 14);
+            let y = hex[x];
+            a += y;
+        }
+        return a;
+    }
+    let Color1 = populate('#');
+    let Color2 = populate('#');
+    var angle = 'to right';
+
+    let gradient = 'linear-gradient(' + angle + ',' + Color1 + ', ' + Color2 + ")";
+    document.getElementById('lyricDiv').style.background = gradient;
+}
 function display_lyric(){
     document.querySelector('svg.lyricSVG').style.fill = "#137aaa"
     var lyricDiv = document.createElement('div')
+    var lyricBox = document.createElement('div')
+    var close_simbol = document.createElement('div')
+    var close_simbol_child_01 = document.createElement('span')
+    var close_simbol_child_02 = document.createElement('span')
+    close_simbol_child_01.className = 'close-simbol-child-01'
+    close_simbol_child_02.className = 'close-simbol-child-02'
+    close_simbol.className = 'close-simbol'
+    close_simbol.onclick = closeLyric
+    document.getElementById('lyricButtom').onclick = closeLyric
     lyricDiv.id = 'lyricDiv'
+    lyricBox.id = 'lyricBox'
     lyricDiv.style.height = (window.innerHeight - propriedades2.height+2) + 'px'
-    lyricDiv.innerHTML= inf[count].Lyrics
+    lyricBox.innerHTML= inf[count].Lyrics == undefined ? "A Letra Desta Música Ainda Não Está Disponível.<br>Por Favor, Volte Mais Tarde.":inf[count].Lyrics
     document.body.appendChild(lyricDiv)
+    random_bg_color()
+    lyricDiv.appendChild(close_simbol)
+    close_simbol.appendChild(close_simbol_child_01)
+    close_simbol.appendChild(close_simbol_child_02)
+    lyricDiv.appendChild(lyricBox)
+}
+function closeLyric(){
+    document.body.removeChild(document.getElementById('lyricDiv'))
+    document.querySelector('svg.lyricSVG').style.fill = "#D9D9D9"
+    document.getElementById('lyricButtom').onclick = display_lyric
 }
 var controls = document.getElementsByClassName('controls-box')
 
@@ -251,10 +298,12 @@ function criarLIs(dados){
             audio.src = 'musics/' + inf[count].path
             starttime()
             audio.play()
-            reset()
-            valor()
+            /*reset()
+            valor()*/
             alreadyPlayed.push(Object({playlist:inf[0].array,número:count}))
-            m.innerText = inf[count].title +' • ' + inf[count].artist
+            musicImg.src = inf[count].img
+            artistP.innerText = inf[count].artist
+            titleP.innerText = inf[count].title
             titulo.innerText = inf[count].title +' • ' + inf[count].artist
             playButtom.onclick = pause_track
             mudarSVG()
@@ -327,12 +376,7 @@ function criarLIs(dados){
     }
 }
 
-function css(){
-    controls.style.position = 'fixed'
-    controls.style.top = String(window.innerHeight-71+8) + 'px'
-   
-    
-}
+
 
 var h1 = document.getElementById('h1')
 function resize(){
@@ -422,12 +466,15 @@ function select2(){
 
 function restore3(){
     load_data()
-    m.innerText = inf[count].title +' • ' + inf[count].artist
+    musicImg.src = inf[count].img
+    artistP.innerText = inf[count].artist
+    titleP.innerText = inf[count].title
+
     
 }
 
-document.body.onresize = css;
-window.onloadeddata = css,setTimeout(resize,200),setTimeout(restore3,2000)
+
+window.onloadeddata = setTimeout(resize,200),setTimeout(restore3,2000)
 
 function selectAll(){
     for(var p = 0; p < inf.length; p++){
@@ -442,3 +489,83 @@ function desactSelectAll(){
     }
     document.getElementById('c').oninput = selectAll
 }
+
+var canvas = document.createElement('canvas');
+function mosaic(input){
+    var img_in1 = document.createElement("img");
+    var img_in2 = document.createElement("img");
+    var img_in3 = document.createElement('img')
+    var img_in4 = document.createElement('img')
+    
+    canvas.width = 80;
+    canvas.height = 80;
+    var context = canvas.getContext("2d");
+
+    img_in1.src="https://sonus-music.web.app/"+input[0].img
+
+    img_in1.addEventListener("load", function(){
+        context.drawImage(img_in1
+                     , 0, 0, img_in1.width, img_in1.height
+                     , 0, 0, img_in1.width, img_in1.height
+                     , 0, 0, 
+                     );
+    img_in2.src = "https://sonus-music.web.app/"+input[1].img
+});
+    img_in2.addEventListener("load", function(){
+        context.drawImage( img_in2
+                     , 0, 0, img_in2.width, img_in2.height
+                     , img_in1.width, 0, img_in2.width, img_in2.height
+                     );
+    img_in3.src = "https://sonus-music.web.app/"+input[2].img
+    
+});
+    img_in3.addEventListener("load", function(){
+        context.drawImage( img_in3
+                     , 0, 0, img_in2.width, img_in2.height
+                     , 0, img_in1.height, img_in2.width, img_in2.height
+                     );
+    img_in4.src = "https://sonus-music.web.app/"+input[2].img
+    
+});
+    img_in4.addEventListener("load", function(){
+        context.drawImage( img_in4
+                     , 0, 0, img_in2.width, img_in2.height
+                     , img_in1.width, img_in1.height, img_in2.width, img_in2.height
+                     );
+   // Para que as linhas abaixo funcionem, é necessário que as imagens
+    // dinâmicas provenham do seu próprio domínio* (ver ASTERISCO):
+    
+    
+    return canvas.toDataURL("https://sonus-music.web.app/")
+});
+
+    
+
+
+}
+var ccaa = [
+    {
+        title: "Evidências",
+        path: "Chitãozinho u0026 Xororó   Evidência.mp3",
+        img:"imagens/Evidências.jpg",
+        artist: "Chitãozinho & Xororó ",
+        array: "ccaa"
+        
+    },
+    {
+        title: "É o amor",
+        path: "Zezé Di Camargo u0026 Luciano   É o Amor (Ao Vivo.mp3",
+        img: "imagens/É o amor.jpg",
+        artist: "Zezé Di Camargo & Luciano"
+    },
+    {
+        title: "Deixaria Tudo",
+        path: "Leonardo   Deixaria Tudo (Dejaria Todo[1].mp3",
+        img: "imagens/Deixaria Tudo.jpg",
+        artist: "Leonardo"
+    }
+]
+
+document.getElementsByClassName('img-playlist-b').src = mosaic(ccaa)
+
+
