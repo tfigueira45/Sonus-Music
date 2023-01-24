@@ -501,7 +501,7 @@ function mosaic(input){
     canvas.height = 80;
     var context = canvas.getContext("2d");
 
-    img_in1.src="https://sonus-music.web.app/"+input[0].img
+    img_in1.src="https://sonusmusic.netlify.app/"+input[0].img
 
     img_in1.addEventListener("load", function(){
         context.drawImage(img_in1
@@ -509,14 +509,14 @@ function mosaic(input){
                      , 0, 0, img_in1.width, img_in1.height
                      , 0, 0, 
                      );
-    img_in2.src = "https://sonus-music.web.app/"+input[1].img
+    img_in2.src = "https://sonusmusic.netlify.app/"+input[1].img
 });
     img_in2.addEventListener("load", function(){
         context.drawImage( img_in2
                      , 0, 0, img_in2.width, img_in2.height
                      , img_in1.width, 0, img_in2.width, img_in2.height
                      );
-    img_in3.src = "https://sonus-music.web.app/"+input[2].img
+    img_in3.src = "https://sonusmusic.netlify.app/"+input[2].img
     
 });
     img_in3.addEventListener("load", function(){
@@ -524,7 +524,7 @@ function mosaic(input){
                      , 0, 0, img_in2.width, img_in2.height
                      , 0, img_in1.height, img_in2.width, img_in2.height
                      );
-    img_in4.src = "https://sonus-music.web.app/"+input[2].img
+    img_in4.src = "https://sonusmusic.netlify.app/"+input[2].img
     
 });
     img_in4.addEventListener("load", function(){
@@ -536,7 +536,7 @@ function mosaic(input){
     // dinâmicas provenham do seu próprio domínio* (ver ASTERISCO):
     
     
-    return canvas.toDataURL("https://sonus-music.web.app/")
+    return canvas.toDataURL("https://sonusmusic.netlify.app/")
 });
 
     
